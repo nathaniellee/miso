@@ -26,22 +26,17 @@
 		}
 	};
 	
-	Miso.publish = function (topic, context, data) {
+	Miso.publish = function (topic, data) {
 		var queue, i, l;
 		
 		if (queues[topic] === undefined) {
 			return false;
 		}
 		
-		if (data === undefined) {
-			data = context;
-			context = global;
-		}
-		
 		queue = queues[topic];
 		
 		for (i = 0, l = queue.length; i < l; i++) {
-			queue[i].call(context, data);
+			queue[i](data);
 		}
 	};
 	

@@ -1,8 +1,8 @@
-(function () {
-	var Broker = {},
+(function (global) {
+	var Miso = {},
 		queues = {};
 	
-	Broker.subscribe = function (topic, fn) {
+	Miso.subscribe = function (topic, fn) {
 		if (queues[topic] === undefined) {
 			queues[topic] = [];
 		}
@@ -10,7 +10,7 @@
 		queues[topic].push(fn);
 	};
 	
-	Broker.unsubscribe = function (topic, fn) {
+	Miso.unsubscribe = function (topic, fn) {
 		var queue, i;
 		
 		if (queues[topic] === undefined) {
@@ -26,7 +26,7 @@
 		}
 	};
 	
-	Broker.publish = function (topic, context, data) {
+	Miso.publish = function (topic, context, data) {
 		var queue, i, l;
 		
 		if (queues[topic] === undefined) {
@@ -35,7 +35,7 @@
 		
 		if (data === undefined) {
 			data = context;
-			context = {};
+			context = global;
 		}
 		
 		queue = queues[topic];
@@ -45,5 +45,5 @@
 		}
 	};
 	
-	window.Miso = Broker;
-})();
+	global.Miso = Miso;
+})(this);

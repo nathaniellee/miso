@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Mocha test specs for the Miso object</title>
+		<link rel="stylesheet" href="lib/mocha.css"/>
+	</head>
+	<body>
+		<div id="mocha"></div>
+		
+		<script src="lib/jquery.js"></script>
+		<script src="lib/mocha.js"></script>
+		<script src="lib/chai.js"></script>
+		
+		<script type="text/javascript">
+			mocha.setup("bdd");
+		</script>
+		
+		<script src="../miso.js"></script>
+		<script src="specs.js"></script>
+		<script type="text/javascript">
+			mocha.run();
+		</script>
+	</body>
+</html>
